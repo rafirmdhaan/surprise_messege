@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+        #message {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Surprise Message for You!</h1>
+    <div id="message"></div>
+
+    <script>
+        // Array of messages to display
+        const messages = [
+            
+        ];
+
+        let index = 0;
+
+        function displayMessage() {
+            if (index < messages.length) {
+                document.getElementById('message').innerText = messages[index];
+                index++;
+            } else {
+                index = 0; // Mulai dari awal lagi jika sudah selesai
+            }
+        }
+
+        // Event listener untuk deteksi tombol spasi
+        document.body.onkeyup = function(e) {
+            if (e.code === 'Space') {
+                displayMessage();
+            }
+        };
+
+        // Event listener untuk deteksi klik di layar
+        document.body.onclick = function() {
+            displayMessage();
+        };
+
+        // Tampilkan pesan pertama setelah 5 detik
+        setTimeout(displayMessage, 5000);
+    </script>
+</body>
+</html>

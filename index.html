@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+        #message {
+            font-size: 20px;
+        }
+        #image-container {
+            display: none; /* Initially hide the image container */
+            margin-top: 20px;
+            display: flex;
+            justify-content: center; /* Horizontal centering */
+            height: 100vh; /* Full viewport height for vertical centering */
+        }
+        #image {
+            display: none; /* Initially hide the image */
+            margin-top: 20px;
+            height: 720;
+        }
+    </style>
+</head>
+<!-- ini adalah komen -->
+<body>
+    
+    <h1>Surprise Message for You!</h1>
+    <div id="message"></div>
+
+    <script>
+        // Array of messages to display
+        const messages = [
+            "HALLOOOO SAYANGGGGGG<3",
+            "HAPPY SWEET SEVENTEEN YAAAA",
+            "semoga kamu panjang umur",
+            "semoga apa yang kamu cita-citakan bisa tercapai, semoga jadi lebih baik lagi kedepannya, semoga makin banyak rezekinya",
+            "makin tambah cantik, tapi sekarang juga udah cantik banget sih kalo tambah cantik lagi makin banyak yang deketin nanti",
+            "semoga kamu ga sering sering sedih lagi yaaa yaa yaaa, jangan suka ovt gajelas biar ga tiba-tiba nangis malem-malem",
+            "yaa pokoknya yang terbaik buat kamu",
+            "aku disini mau sekalian bilang makasih ke kamu karna udah sabar ngadepin aku",
+            "makasih karna kamu mau nerima aku meskipun aku suka bikin kamu kesel, aku suka jailin kamu, suka bikin kamu bete",
+            "suka bikin kamu nangis, maafin pacar kamu yang paling ganteng ini yaaaaaaaa",
+            "kamu jangan suka begadang yaaa sayangg, kamukan masih sekolah masih SMA hehe berangkatnya harus pagi-pagi",
+            "jadi bobonya jangan malem terus yaaaa",
+            "oiya kalo aku pas disana jadi susah diajak callan maaf yaaa soalnya disini tugas-tugasnya ga kaya di SMA",
+            "disana tugasnya ribet banget banyak yang aku gangerti pula, udah gitu deadlinenya kadang ada yang cepet banget",
+            "OIYAAA, kamu sekarangkan sibuk banget nih semangattt yaaa jangan suka telat makan yaa sayanggg nanti sakit",
+            "KAMU JUGA JANGAN SUKA MAKAN YANG PEDES-PEDES TERUS KAMUKAN PUNYA GERRRRRDDDDDDD",
+            "yaaa pokoknya makasihh yaaa sayanggg kamu udah bertahan selama setahun ini sama aku",
+            "makasihhh karna kamu udah mau nemenin aku pas aku lagi ada masalah, pas aku lagi pusing ngerjain tugas, pas aku lagi sedih",
+            "kamu juga selalu bolehin aku kerumah kamu padahal kamu sendiri lagi kecapean",
+            "TIMAKACIIIIIIII YAAAAAAA SAYANGGGGGG",
+            "TIMAKACIIIII TIMAKACIIIII TIMAKACIIIIII",
+            "ohhh ada lagiii, kamu jangan suka ngambek dong kalo misalkan lagi callan aku sambil main game",
+            "akukan sambil main biar akunya ga bosen, aku sambil main bukan berarti aku bosen callan sama kamu kok",
+            "kan aku pernah bilang kalo callan tuh aku gabisa diem aja mau dirumah juga aku suka sambil main gitar, main game, buka tiktok, dll",
+            "kecuali pas aku lagi ga mood ngapa-ngapain baru callan sambil tiduran kadang malah dengerin kamu cerita bisa bikin aku ketiduran",
+            "abis enak aja gitu dengerin kamu cerita, tapi ceritanya yang happy-happy kalo yang sedih-sedih aku jadi gabisa tidur",
+            "soalnya kan aku harus nanggepin cerita kamu juga kalo ceritanya sedih jadi gabisa bobo",
+            "maapin aku yaaaa",
+            "bingung apa lagi yaaa",
+            "semangatin kali yaaa",
+            "SEMANGATTTTTTT YAAAAAAAA SAYANGGGGGG",
+            "kamu harus semangat dalam ngejalanin kegiatan apapun",
+            "ntah itu belajar di sekolah, ngerjain tugas, nari, inten, dll",
+            "kamu juga jangan suka males-malesan yaaa, gapapa sekali-kali mah buat istirahat kalo cape",
+            "tapi jangan keseringan yaaa, cuman yaaa kalo cape istirahat dulu",
+            "kamu keren tau sayang masih kelas 10 aja kamu udah tampil di beberapa event",
+            "aku aja kalah aku baru berani ikut event-event sekolah pas kelas 11 sama 12",
+            "abis kelas 10 aku males malesan sampe nunggak tugas, biasalah efek pandemi",
+            "kamu jangan mencontoh aku yaaa",
+            "contoh yang baiknya aja yaa, yang buruknya jangan yaa dek yaa",
+            "terus kamu tuh jangan suka nahan-nahan makan takut gendut lah apa lah",
+            "MAKAN MAH MAKAN AJA KELEZZZZZ, KALO GENDUT TINGGAL DIET HEHEHE",
+            "lagian gendut dikit ga ngaruh sengg hehe, aku jadi bisa ngeledek muahahahahah",
+            "ENGGGAAAA BOONGG BERCANDA DOANG SENGGG SUMPAHHH",
+            "jangan marah yaaa",
+            "WOFFFFYUUUUUUUUUUU<3",
+            "udah kali yaaa, aku udah gatau lagi mau ngomong apa",
+            "intinya aku bersyukur bangetttt... bangettt... bangetttt... bisa ketemu kamu, aku awalnya ga nyangka si bisa dapetin kamu",
+            "kamu yang baik, cantik, manis, pinter, pengertian, kadang dewasa kadang engga, tapi ternyata.....",
+            "kamu yang suka aku duluan, ternyata aura kegantengan aku membuat kamu terpikat yaa wkwkwkwkwk",
+            "BERCANDA LAGI SENG BIAAR GA SERIUS SERIUS BANGET",
+            "tapi kamu ga pantes di bercandain sih, pantesnya di seriusin EAAKKKKK WKWKWKWK",
+            "engga seng becanda, gausah senyum-senyum gitu dong",
+            "KAAAANNNNN LUCUUUU BANGETTT JADINYAAAA",
+            "kamu kalo senyum kaya le minerale, ada manis-manisnya",
+            "cieee senyum lagi",
+            "udah ni udah terakhrir",
+            "ini yg paling butuh effort sih",
+            "SIAPPP YAAA",
+            "3",
+            "2",
+            "1",
+            "NUNGGUIN YAAAA WKWKWKWK"
+        ];
+        let index = 0;
+
+        function displayMessage() {
+            if (index < messages.length) {
+                document.getElementById('message').innerText = messages[index];
+                index++;
+            } else {
+                // When all messages are displayed, show the image
+                document.getElementById('image').style.display = 'block';
+            }
+        }
+
+        // Event listener for spacebar press
+        document.body.onkeyup = function(e) {
+            if (e.code === 'Space') {
+                displayMessage();
+            }
+        };
+
+        // Event listener for click on the screen
+        document.body.onclick = function() {
+            displayMessage();
+        };
+
+        // Display the first message after 5 seconds
+        setTimeout(displayMessage, 5000);
+    </script>
+
+    <!-- Image that will appear after all messages -->
+    <div id="image-container">
+        <img id="image" src="123.png" alt="Surprise Image">
+    </div>
+
+</body>
+</html>
